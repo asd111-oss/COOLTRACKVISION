@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, forwardRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Factory, Building, ShoppingBag, Coffee, Car, Fuel } from "lucide-react";
 
-// Массив данных с путями к картинкам И ВИДЕО
 const industries = [
   {
     id: "industry",
@@ -10,7 +9,7 @@ const industries = [
     description: "Контроль производственных процессов, безопасность персонала и мониторинг оборудования. Наша система обеспечивает непрерывный контроль производственных линий, отслеживание соблюдения техники безопасности и автоматический учет рабочего времени.",
     icon: Factory,
     image: "/new-images/industry.png", 
-    video: "/videos/industry.mp4", // <-- Добавьте ваше видео сюда (создайте папку public/videos)
+    video: "/videos/industry.mp4",
   },
   {
     id: "construction",
@@ -58,7 +57,6 @@ export function Industries() {
   const [activeId, setActiveId] = useState<string>(industries[0].id);
   const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
-  // Функция для скролла к карточке
   const scrollToCard = (id: string) => {
     const card = cardRefs.current[id];
     if (card) {
@@ -77,9 +75,7 @@ export function Industries() {
           </h3>
         </div>
 
-        {/* Desktop: Sticky Scroll Layout */}
         <div className="hidden md:grid md:grid-cols-12 gap-8">
-          {/* Левая колонка - Sticky список иконок */}
           <div className="col-span-3">
             <div className="sticky top-20 space-y-6">
               {industries.map((industry) => {
@@ -103,14 +99,13 @@ export function Industries() {
                         isActive ? "text-primary" : "text-muted-foreground"
                       }`} />
                     </div>
-                    <span className="font-display font-semibold text-sm">{industry.title}</span>
+                    <span className="font-display font-semibold text-sm text-left">{industry.title}</span>
                   </motion.button>
                 );
               })}
             </div>
           </div>
 
-          {/* Правая колонка - Карточки с описанием */}
           <div className="col-span-9 space-y-8">
             {industries.map((industry, index) => (
               <IndustryCard
@@ -126,7 +121,6 @@ export function Industries() {
           </div>
         </div>
 
-        {/* Mobile: горизонтальный скролл карточек */}
         <div className="md:hidden -mx-4 px-4">
           <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
             {industries.map((industry, index) => (
@@ -145,12 +139,10 @@ export function Industries() {
   );
 }
 
-// Компонент карточки отрасли
 interface IndustryCardProps {
   industry: typeof industries[0];
   index: number;
   onInView: () => void;
-  ref?: React.Ref<HTMLDivElement>;
 }
 
 const IndustryCard = forwardRef<HTMLDivElement, IndustryCardProps>(
@@ -170,7 +162,6 @@ const IndustryCard = forwardRef<HTMLDivElement, IndustryCardProps>(
       }
     }, [isInView, onInView]);
 
-    // Объединяем внешний и внутренний ref
     useEffect(() => {
       if (typeof ref === "function") {
         ref(cardRef.current);
@@ -179,24 +170,46 @@ const IndustryCard = forwardRef<HTMLDivElement, IndustryCardProps>(
       }
     }, [ref]);
 
-    // Логика управления видео при наведении
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-      if (videoRef.current) {
-        // Сбрасываем видео на начало и запускаем
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch((e) => {
-             // Игнорируем ошибки автоплея (браузеры иногда блокируют)
-             console.log("Video play prevented", e);
-        });
-      }
-    };
-
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-      if (videoRef.current) {
-        videoRef.current.pause();
-      }
-    };
-
     return (
+      <div
+        ref={cardRef}
+        className="bg-card border border-border/50 rounded-sm overflow-hidden group"
+        onMouseEnter={() => {
+          setIsHovered(true);
+          videoRef.current?.play().catch(() => {});
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          videoRef.current?.pause();
+        }}
+      >
+        <div className="grid md:grid-cols-2">
+          <div className="p-8 flex flex-col justify-center">
+            <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-sm mb-6">
+              <industry.icon className="w-6 h-6 text-primary" />
+            </div>
+            <h4 className="text-2xl font-display font-bold mb-4">{industry.title}</h4>
+            <p className="text-muted-foreground leading-relaxed">{industry.description}</p>
+          </div>
+          <div className="relative aspect-video md:aspect-auto overflow-hidden bg-muted">
+            <img
+              src={industry.image}
+              alt={industry.title}
+              className={`w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+            />
+            <video
+              ref={videoRef}
+              src={industry.video}
+              muted
+              loop
+              playsInline
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
+
+IndustryCard.displayName = "IndustryCard";
