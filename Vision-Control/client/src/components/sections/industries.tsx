@@ -30,7 +30,7 @@ export function Industries() {
           </h3>
         </div>
 
-        {/* DESKTOP ВЕРСИЯ */}
+        {/* DESKTOP */}
         <div className="hidden md:grid md:grid-cols-12 gap-8">
           <div className="col-span-3">
             <div className="sticky top-28 space-y-3">
@@ -49,13 +49,21 @@ export function Industries() {
           </div>
         </div>
 
-        {/* МОБИЛЬНАЯ ВЕРСИЯ: СТРОГО В РЯД (flex flex-row) */}
+        {/* MOBILE: В РЯД + АВТО-ВИДЕО */}
         <div className="md:hidden flex flex-row gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-6 px-6 pb-6">
           {industries.map((industry) => (
             <div key={industry.id} className="w-[85vw] min-w-[85vw] shrink-0 snap-center">
               <div className="relative border border-white/5 rounded-lg overflow-hidden bg-[#020617]">
                 <div className="relative aspect-video w-full">
-                  <video src={industry.video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+                  <video 
+                    src={industry.video} 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline 
+                    preload="auto"
+                    className="absolute inset-0 w-full h-full object-cover" 
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-10" />
                   <div className="absolute top-3 left-3 w-8 h-8 border border-primary/40 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-sm z-20">
                     <industry.icon className="w-4 h-4 text-primary" />
@@ -84,7 +92,15 @@ const IndustryCard = forwardRef<HTMLDivElement, { industry: any, onInView: () =>
     return (
       <div ref={cardRef} className="relative border border-white/5 rounded-lg overflow-hidden transition-all duration-500 hover:border-primary/40 bg-[#020617]">
         <div className="relative aspect-[16/6] w-full">
-          <video src={industry.video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
+          <video 
+            src={industry.video} 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover" 
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-10" />
         </div>
         <div className="relative z-20 p-6 mt-[-25px]">
