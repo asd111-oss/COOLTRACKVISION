@@ -22,10 +22,13 @@ export function Features() {
           </h3>
         </div>
 
-        {/* ПРИНУДИТЕЛЬНЫЙ FLEX ДЛЯ МОБИЛЬНЫХ (flex md:grid) */}
+        {/* МОБИЛЬНЫЙ СКРОЛЛ: flex flex-row + overflow-x-auto */}
         <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-12 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
           {features.map((feature) => (
-            <div key={feature.id} className="w-[85vw] min-w-[85vw] md:w-auto md:min-w-0 shrink-0 snap-center">
+            <div 
+              key={feature.id} 
+              className="w-[85vw] min-w-[85vw] md:w-auto md:min-w-0 shrink-0 snap-center"
+            >
               <div className="group relative bg-card border border-border/50 rounded-sm overflow-hidden h-full transition-all hover:border-primary/50">
                 <div className="relative h-64 overflow-hidden">
                   <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
@@ -35,8 +38,8 @@ export function Features() {
                   </div>
                 </div>
                 <div className="p-6 relative z-30 -mt-10">
-                  <h4 className="text-xl font-display font-bold mb-3 text-white">{feature.title}</h4>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{feature.description}</p>
+                  <h4 className="text-xl font-display font-bold mb-3 text-white tracking-tight">{feature.title}</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 line-clamp-2">{feature.description}</p>
                   <div className="flex items-center text-primary font-tech text-xs uppercase tracking-wider">
                     <span>Подробнее</span><ChevronRight className="w-4 h-4 ml-1" />
                   </div>
