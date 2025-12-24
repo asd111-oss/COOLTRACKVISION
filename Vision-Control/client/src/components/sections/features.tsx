@@ -22,12 +22,12 @@ export function Features() {
           </h3>
         </div>
 
-        {/* МОБИЛЬНЫЙ СКРОЛЛ: flex flex-row + overflow-x-auto */}
-        <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-12 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
+        {/* ПРИНУДИТЕЛЬНЫЙ РЯД: !flex !flex-row */}
+        <div className="!flex !flex-row md:!grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-12 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
           {features.map((feature) => (
             <div 
               key={feature.id} 
-              className="w-[85vw] min-w-[85vw] md:w-auto md:min-w-0 shrink-0 snap-center"
+              className="w-[80vw] min-w-[80vw] md:w-auto md:min-w-0 shrink-0 snap-center"
             >
               <div className="group relative bg-card border border-border/50 rounded-sm overflow-hidden h-full transition-all hover:border-primary/50">
                 <div className="relative h-64 overflow-hidden">
