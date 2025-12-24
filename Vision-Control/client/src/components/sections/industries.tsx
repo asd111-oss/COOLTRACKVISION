@@ -6,7 +6,7 @@ const industries = [
   {
     id: "industry",
     title: "Промышленность",
-    description: "Контроль производственных процессов, безопасность персонала и мониторинг оборудования. Наша система обеспечивает непрерывный контроль производственных линий, отслеживание соблюдения техники безопасности и автоматический учет рабочего времени.",
+    description: "Контроль производственных процессов, безопасность персонала и мониторинг оборудования. Наша система обеспечивает непрерывный контроль производственных линий.",
     icon: Factory,
     image: "/new-images/industry.png", 
     video: "/videos/industry.mp4",
@@ -14,7 +14,7 @@ const industries = [
   {
     id: "construction",
     title: "Строительство",
-    description: "Наблюдение за объектами, контроль доступа и учет рабочего времени. Видеоаналитика помогает контролировать строительные площадки, предотвращать несанкционированный доступ и оптимизировать рабочие процессы.",
+    description: "Наблюдение за объектами, контроль доступа и учет рабочего времени. Видеоаналитика помогает контролировать строительные площадки и оптимизировать процессы.",
     icon: Building,
     image: "/new-images/construction.png",
     video: "/videos/construction.mp4",
@@ -22,7 +22,7 @@ const industries = [
   {
     id: "retail",
     title: "Ритейл",
-    description: "Анализ покупательского потока, контроль выкладки и предотвращение краж. Система анализирует поведение покупателей, контролирует правильность выкладки товаров и мгновенно реагирует на подозрительную активность.",
+    description: "Анализ покупательского потока, контроль выкладки и предотвращение краж. Система анализирует поведение покупателей и реагирует на подозрительную активность.",
     icon: ShoppingBag,
     image: "/new-images/retail.png",
     video: "/videos/retail.mp4",
@@ -30,7 +30,7 @@ const industries = [
   {
     id: "horeca",
     title: "HoReCa",
-    description: "Оптимизация обслуживания гостей, контроль качества и учет посетителей. Платформа помогает оптимизировать работу ресторанов и отелей, контролировать качество обслуживания и анализировать поток посетителей.",
+    description: "Оптимизация обслуживания гостей, контроль качества и учет посетителей. Платформа помогает контролировать качество обслуживания и анализировать поток посетителей.",
     icon: Coffee,
     image: "/new-images/HORECA.png",
     video: "/videos/horeca.mp4",
@@ -38,7 +38,7 @@ const industries = [
   {
     id: "logistics",
     title: "Логистика",
-    description: "Мониторинг складов, контроль погрузки-разгрузки и отслеживание транспорта. Система обеспечивает полный контроль логистических процессов, отслеживание транспорта и оптимизацию складских операций.",
+    description: "Мониторинг складов, контроль погрузки-разгрузки и отслеживание транспорта. Система обеспечивает полный контроль логистических процессов и складских операций.",
     icon: Car,
     image: "/new-images/logistics.jpeg",
     video: "/videos/logistics.mp4",
@@ -46,7 +46,7 @@ const industries = [
   {
     id: "gas-station",
     title: "АЗС",
-    description: "Контроль заправок, безопасность и предотвращение нарушений. Видеоаналитика обеспечивает безопасность на АЗС, контролирует процесс заправки и предотвращает нарушения правил эксплуатации.",
+    description: "Контроль заправок, безопасность и предотвращение нарушений. Видеоаналитика обеспечивает безопасность на АЗС и контролирует процесс заправки.",
     icon: Fuel,
     image: "/new-images/fuel.jpeg",
     video: "/videos/fuel.mp4",
@@ -65,147 +65,117 @@ export function Industries() {
   };
 
   return (
-    <section id="industries" className="py-24 bg-background relative border-t border-border/30">
+    <section id="industries" className="py-24 bg-transparent relative border-t border-white/5">
       <div className="container mx-auto px-6">
-        <div className="mb-16 md:mb-24">
-          <h2 className="text-primary font-tech uppercase tracking-widest text-sm mb-4">Отрасли применения</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-bold text-foreground max-w-2xl">
-            РЕШЕНИЯ ДЛЯ <br />
-            <span className="text-muted-foreground">ЛЮБОГО БИЗНЕСА</span>
+        {/* Заголовок с переносом и цветом */}
+        <div className="mb-12">
+          <h2 className="text-primary font-tech uppercase tracking-widest text-xs mb-3">Отрасли применения</h2>
+          <h3 className="text-3xl md:text-4xl font-display font-bold text-white max-w-xl leading-tight">
+            РЕШЕНИЯ <br /> 
+            <span className="text-slate-500 uppercase">ДЛЯ ЛЮБОГО БИЗНЕСА</span>
           </h3>
         </div>
 
         <div className="hidden md:grid md:grid-cols-12 gap-8">
+          {/* Левая колонка (Меню) */}
           <div className="col-span-3">
-            <div className="sticky top-20 space-y-6">
+            <div className="sticky top-28 space-y-3">
               {industries.map((industry) => {
                 const isActive = activeId === industry.id;
                 return (
-                  <motion.button
+                  <button
                     key={industry.id}
                     onClick={() => scrollToCard(industry.id)}
-                    className={`w-full flex items-center gap-4 p-4 rounded-sm transition-all duration-300 ${
+                    className={`w-full flex items-center gap-3 p-3 rounded-sm transition-all duration-300 border ${
                       isActive
-                        ? "bg-card border border-primary/50 text-primary"
-                        : "bg-card/50 border border-border/50 text-muted-foreground hover:border-primary/30 hover:text-foreground"
+                        ? "bg-white/5 border-primary/60 text-white shadow-[0_0_15px_rgba(249,115,22,0.05)]"
+                        : "bg-transparent border-white/5 text-slate-500 hover:border-white/20 hover:text-slate-300"
                     }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className={`flex-shrink-0 w-12 h-12 bg-background/90 backdrop-blur border flex items-center justify-center rounded-sm transition-colors ${
-                      isActive ? "border-primary/50" : "border-primary/20"
+                    <div className={`flex-shrink-0 w-8 h-8 border flex items-center justify-center rounded-sm ${
+                      isActive ? "border-primary/50 bg-primary/10" : "border-white/10"
                     }`}>
-                      <industry.icon className={`w-6 h-6 transition-colors ${
-                        isActive ? "text-primary" : "text-muted-foreground"
-                      }`} />
+                      <industry.icon className={`w-4 h-4 ${isActive ? "text-primary" : "text-current"}`} />
                     </div>
-                    <span className="font-display font-semibold text-sm text-left">{industry.title}</span>
-                  </motion.button>
+                    <span className="font-tech font-bold uppercase tracking-wider text-[10px] text-left">{industry.title}</span>
+                  </button>
                 );
               })}
             </div>
           </div>
 
-          <div className="col-span-9 space-y-8">
-            {industries.map((industry, index) => (
+          {/* Правая колонка (Карточки) */}
+          <div className="col-span-9 space-y-10">
+            {industries.map((industry) => (
               <IndustryCard
                 key={industry.id}
                 industry={industry}
-                index={index}
-                ref={(el: HTMLDivElement | null) => {
-                  cardRefs.current[industry.id] = el;
-                }}
+                ref={(el) => { cardRefs.current[industry.id] = el; }}
                 onInView={() => setActiveId(industry.id)}
               />
             ))}
           </div>
         </div>
 
-        <div className="md:hidden -mx-4 px-4">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2">
-            {industries.map((industry, index) => (
-              <div key={industry.id} className="snap-center shrink-0 w-[85%] last:mr-4">
-                <IndustryCard
-                  industry={industry}
-                  index={index}
-                  onInView={() => setActiveId(industry.id)}
-                />
-              </div>
-            ))}
-          </div>
+        {/* Мобильная версия */}
+        <div className="md:hidden space-y-8">
+          {industries.map((industry) => (
+            <IndustryCard
+              key={industry.id}
+              industry={industry}
+              onInView={() => setActiveId(industry.id)}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-interface IndustryCardProps {
-  industry: typeof industries[0];
-  index: number;
-  onInView: () => void;
-}
-
-const IndustryCard = forwardRef<HTMLDivElement, IndustryCardProps>(
-  ({ industry, index, onInView }, ref) => {
+const IndustryCard = forwardRef<HTMLDivElement, { industry: any, onInView: () => void }>(
+  ({ industry, onInView }, ref) => {
     const cardRef = useRef<HTMLDivElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [isHovered, setIsHovered] = useState(false);
 
-    const isInView = useInView(cardRef, {
-      margin: "-40% 0px -40% 0px",
-      once: false,
-    });
+    const isInView = useInView(cardRef, { margin: "-45% 0px -45% 0px" });
+
+    useEffect(() => { if (isInView) onInView(); }, [isInView]);
 
     useEffect(() => {
-      if (isInView) {
-        onInView();
-      }
-    }, [isInView, onInView]);
-
-    useEffect(() => {
-      if (typeof ref === "function") {
-        ref(cardRef.current);
-      } else if (ref && 'current' in ref) {
-        (ref as React.MutableRefObject<HTMLDivElement | null>).current = cardRef.current;
-      }
+      if (typeof ref === "function") ref(cardRef.current);
+      else if (ref) (ref as any).current = cardRef.current;
     }, [ref]);
 
     return (
       <div
         ref={cardRef}
-        className="bg-card border border-border/50 rounded-sm overflow-hidden group"
-        onMouseEnter={() => {
-          setIsHovered(true);
-          videoRef.current?.play().catch(() => {});
-        }}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          videoRef.current?.pause();
-        }}
+        className="relative border border-white/5 rounded-lg overflow-hidden transition-all duration-500 hover:border-primary/40 group bg-[#020617]"
       >
-        <div className="grid md:grid-cols-2">
-          <div className="p-8 flex flex-col justify-center">
-            <div className="w-12 h-12 bg-primary/10 flex items-center justify-center rounded-sm mb-6">
-              <industry.icon className="w-6 h-6 text-primary" />
-            </div>
-            <h4 className="text-2xl font-display font-bold mb-4">{industry.title}</h4>
-            <p className="text-muted-foreground leading-relaxed">{industry.description}</p>
+        {/* Видео: высота aspect-[16/6] и автозапуск */}
+        <div className="relative aspect-[16/6] w-full overflow-hidden">
+          <video
+            ref={videoRef}
+            src={industry.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-10" />
+          <div className="absolute top-3 left-3 w-8 h-8 border border-primary/40 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-sm z-20">
+            <industry.icon className="w-4 h-4 text-primary" />
           </div>
-          <div className="relative aspect-video md:aspect-auto overflow-hidden bg-muted">
-            <img
-              src={industry.image}
-              alt={industry.title}
-              className={`w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
-            />
-            <video
-              ref={videoRef}
-              src={industry.video}
-              muted
-              loop
-              playsInline
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
-            />
-          </div>
+        </div>
+
+        {/* Текст: уменьшенные шрифты и отступы */}
+        <div className="relative z-20 p-5 md:p-6 mt-[-25px]">
+          <h4 className="text-xl md:text-2xl font-display font-bold text-white mb-2 tracking-tight">
+            {industry.title}
+          </h4>
+          <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-3xl">
+            {industry.description}
+          </p>
         </div>
       </div>
     );
