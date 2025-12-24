@@ -5,97 +5,45 @@ import monitorImg from "@/assets/generated_images/factory_floor_with_ar_monitori
 import faceImg from "@/assets/generated_images/biometric_facial_recognition_interface.png";
 
 const features = [
-  {
-    id: "adapter",
-    title: "Транспорт и техника",
-    description: "Номера, въезды/выезды под полным контролем",
-    icon: BrainCircuit,
-    image: adapterImg,
-  },
-  {
-    id: "monitoring",
-    title: "Обнаружение инцидентов",
-    description: "Система сама ловит нарушения и сразу шлет тревогу",
-    icon: Eye,
-    image: monitorImg,
-  },
-  {
-    id: "recognition",
-    title: "Трекинг",
-    description: "Face ID для учета времени и местоположения сотрудников",
-    icon: ScanFace,
-    image: faceImg,
-  },
+  { id: "adapter", title: "Транспорт и техника", description: "Номера, въезды/выезды под полным контролем", icon: BrainCircuit, image: adapterImg },
+  { id: "monitoring", title: "Обнаружение инцидентов", description: "Система сама ловит нарушения и сразу шлет тревогу", icon: Eye, image: monitorImg },
+  { id: "recognition", title: "Трекинг", description: "Face ID для учета времени и местоположения сотрудников", icon: ScanFace, image: faceImg },
 ];
 
 export function Features() {
   return (
     <section id="features" className="py-24 bg-background relative border-t border-border/30 overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="mb-16 md:mb-24">
+        <div className="mb-12 md:mb-20">
           <h2 className="text-primary font-tech uppercase tracking-widest text-sm mb-4">Функциональные возможности</h2>
-          <h3 className="text-4xl md:text-5xl font-display font-bold text-white max-w-2xl leading-tight">
+          <h3 className="text-3xl md:text-5xl font-display font-bold text-white max-w-2xl leading-tight">
             ИНТЕЛЛЕКТУАЛЬНЫЙ <br />
             <span className="text-slate-500 uppercase">АНАЛИЗ ДАННЫХ</span>
           </h3>
         </div>
 
-        {/* МОБИЛЬНЫЙ СКРОЛЛ + ДЕСКТОП СЕТКА */}
-        {/* Добавлены классы: overflow-x-auto, snap-x, snap-mandatory для скролла */}
         <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-12 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-              /* Добавлен класс shrink-0 для мобильного ряда и min-w-[85vw] */
-              className="min-w-[85vw] md:min-w-0 shrink-0 snap-center group relative bg-card border border-border/50 hover:border-primary/50 transition-all duration-300 overflow-hidden rounded-sm"
-            >
-              {/* Image Container */}
-              <div className="relative h-64 overflow-hidden">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10" />
-                <img 
-                  src={feature.image} 
-                  alt={feature.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-20" />
-                
-                <div className="absolute top-4 left-4 z-30 w-10 h-10 bg-background/90 backdrop-blur border border-primary/30 flex items-center justify-center text-primary">
-                  <feature.icon className="w-5 h-5" />
+          {features.map((feature) => (
+            <div key={feature.id} className="min-w-[85%] md:min-w-0 shrink-0 snap-center">
+              <div className="group relative bg-card border border-border/50 rounded-sm overflow-hidden h-full transition-all hover:border-primary/50">
+                <div className="relative h-64 overflow-hidden">
+                  <img src={feature.image} alt={feature.title} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-20" />
+                  <div className="absolute top-4 left-4 z-30 w-10 h-10 bg-background/90 border border-primary/30 flex items-center justify-center text-primary">
+                    <feature.icon className="w-5 h-5" />
+                  </div>
+                </div>
+                <div className="p-6 relative z-30 -mt-10">
+                  <h4 className="text-xl font-display font-bold mb-3 text-white">{feature.title}</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{feature.description}</p>
+                  <div className="flex items-center text-primary font-tech text-xs uppercase tracking-wider">
+                    <span>Подробнее</span><ChevronRight className="w-4 h-4 ml-1" />
+                  </div>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="p-8 relative z-30 -mt-12">
-                <h4 className="text-2xl font-display font-bold mb-4 text-white group-hover:text-primary transition-colors">
-                  {feature.title}
-                </h4>
-                <p className="text-slate-400 leading-relaxed mb-6 text-sm">
-                  {feature.description}
-                </p>
-                <div className="flex items-center text-primary font-tech text-xs uppercase tracking-wider group-hover:gap-2 transition-all">
-                  <span>Подробнее</span>
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </div>
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex justify-center mt-8 md:mt-24"
-        >
-          <div className="inline-flex items-center justify-center text-center px-8 py-4 border border-primary/30 bg-primary/5 text-primary text-[10px] md:text-sm font-tech uppercase tracking-widest rounded-sm hover:bg-primary/10 hover:border-primary/60 transition-colors cursor-default max-w-2xl leading-relaxed">
-            Все события и процессы становятся основой для аналитики
-          </div>
-        </motion.div>
       </div>
     </section>
   );
