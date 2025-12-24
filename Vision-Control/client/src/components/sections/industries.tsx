@@ -3,12 +3,12 @@ import { motion, useInView } from "framer-motion";
 import { Factory, Building, ShoppingBag, Coffee, Car, Fuel } from "lucide-react";
 
 const industries = [
-  { id: "industry", title: "Промышленность", description: "Контроль производственных процессов и безопасность персонала.", icon: Factory, image: "/new-images/industry.png", video: "/videos/industry.mp4" },
-  { id: "construction", title: "Строительство", description: "Наблюдение за объектами и контроль доступа.", icon: Building, image: "/new-images/construction.png", video: "/videos/construction.mp4" },
-  { id: "retail", title: "Ритейл", description: "Анализ покупательского потока и контроль выкладки.", icon: ShoppingBag, image: "/new-images/retail.png", video: "/videos/retail.mp4" },
-  { id: "horeca", title: "HoReCa", description: "Оптимизация обслуживания гостей и контроль качества.", icon: Coffee, image: "/new-images/HORECA.png", video: "/videos/horeca.mp4" },
-  { id: "logistics", title: "Логистика", description: "Мониторинг складов и отслеживание транспорта.", icon: Car, image: "/new-images/logistics.jpeg", video: "/videos/logistics.mp4" },
-  { id: "gas-station", title: "АЗС", description: "Контроль заправок и безопасность.", icon: Fuel, image: "/new-images/fuel.jpeg", video: "/videos/fuel.mp4" },
+  { id: "industry", title: "Промышленность", description: "Контроль производственных процессов и безопасность персонала.", icon: Factory, video: "/videos/industry.mp4" },
+  { id: "construction", title: "Строительство", description: "Наблюдение за объектами и контроль доступа.", icon: Building, video: "/videos/construction.mp4" },
+  { id: "retail", title: "Ритейл", description: "Анализ покупательского потока и контроль выкладки.", icon: ShoppingBag, video: "/videos/retail.mp4" },
+  { id: "horeca", title: "HoReCa", description: "Оптимизация обслуживания гостей и контроль качества.", icon: Coffee, video: "/videos/horeca.mp4" },
+  { id: "logistics", title: "Логистика", description: "Мониторинг складов и отслеживание транспорта.", icon: Car, video: "/videos/logistics.mp4" },
+  { id: "gas-station", title: "АЗС", description: "Контроль заправок и безопасность.", icon: Fuel, video: "/videos/fuel.mp4" },
 ];
 
 export function Industries() {
@@ -30,7 +30,7 @@ export function Industries() {
           </h3>
         </div>
 
-        {/* DESKTOP */}
+        {/* DESKTOP ВЕРСИЯ */}
         <div className="hidden md:grid md:grid-cols-12 gap-8">
           <div className="col-span-3">
             <div className="sticky top-28 space-y-3">
@@ -49,10 +49,10 @@ export function Industries() {
           </div>
         </div>
 
-        {/* MOBILE */}
-        <div className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-6 px-6 pb-6">
+        {/* МОБИЛЬНАЯ ВЕРСИЯ: СТРОГО В РЯД (flex flex-row) */}
+        <div className="md:hidden flex flex-row gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-6 px-6 pb-6">
           {industries.map((industry) => (
-            <div key={industry.id} className="min-w-[85%] shrink-0 snap-center">
+            <div key={industry.id} className="w-[85vw] min-w-[85vw] shrink-0 snap-center">
               <div className="relative border border-white/5 rounded-lg overflow-hidden bg-[#020617]">
                 <div className="relative aspect-video w-full">
                   <video src={industry.video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
@@ -62,8 +62,8 @@ export function Industries() {
                   </div>
                 </div>
                 <div className="p-5">
-                  <h4 className="text-xl font-display font-bold text-white mb-2">{industry.title}</h4>
-                  <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">{industry.description}</p>
+                  <h4 className="text-xl font-display font-bold text-white mb-2 tracking-tight">{industry.title}</h4>
+                  <p className="text-slate-400 text-[11px] leading-relaxed line-clamp-3">{industry.description}</p>
                 </div>
               </div>
             </div>
@@ -86,9 +86,6 @@ const IndustryCard = forwardRef<HTMLDivElement, { industry: any, onInView: () =>
         <div className="relative aspect-[16/6] w-full">
           <video src={industry.video} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent z-10" />
-          <div className="absolute top-3 left-3 w-8 h-8 border border-primary/40 bg-black/40 backdrop-blur-md flex items-center justify-center rounded-sm z-20">
-            <industry.icon className="w-4 h-4 text-primary" />
-          </div>
         </div>
         <div className="relative z-20 p-6 mt-[-25px]">
           <h4 className="text-2xl font-display font-bold text-white mb-2">{industry.title}</h4>

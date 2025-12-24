@@ -16,9 +16,10 @@ export function HowItWorks() {
           <h2 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight leading-tight">Полный путь от камеры до аналитики</h2>
         </div>
 
+        {/* ПРИНУДИТЕЛЬНЫЙ FLEX ДЛЯ МОБИЛЬНЫХ */}
         <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible pb-12 snap-x snap-mandatory scrollbar-hide -mx-6 px-6">
           {steps.map((step, index) => (
-            <div key={index} className="min-w-[85%] md:min-w-0 shrink-0 snap-center">
+            <div key={index} className="w-[85vw] min-w-[85vw] md:w-auto md:min-w-0 shrink-0 snap-center">
               <div className="h-full p-10 rounded-lg border border-white/5 bg-[#0f172a]/20 backdrop-blur-sm flex flex-col items-center text-center transition-all hover:border-primary/30">
                 <div className="w-12 h-12 border border-primary/40 flex items-center justify-center rounded-sm mb-8 bg-primary/5">
                   <step.icon className="w-6 h-6 text-primary" />
