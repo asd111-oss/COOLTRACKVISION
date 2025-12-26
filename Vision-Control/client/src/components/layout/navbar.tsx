@@ -18,23 +18,29 @@ export function Navbar() {
   // Универсальная функция навигации
   const handleNav = (id: string | null) => {
     setIsOpen(false);
-    
+
+    // Отдельная страница "О нас"
     if (id === "about") {
       setLocation("/about");
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
+    // Отдельная страница "Функции"
+    if (id === "features") {
+      setLocation("/features");
+      return;
+    }
+
+    // Если мы НЕ на главной (/)
     if (location !== "/") {
-      // Если мы на странице /about, сначала идем на главную
       setLocation("/");
-      // Небольшая задержка, чтобы страница успела загрузиться перед скроллом
       setTimeout(() => {
         const element = document.getElementById(id || "");
         element?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      // Если мы и так на главной
+      // Если уже на главной — просто скроллим
       if (!id) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -46,10 +52,9 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        
         {/* LOGO: всегда ведет на главную вверх */}
-        <div 
-          className="flex items-center gap-2 group cursor-pointer" 
+        <div
+          className="flex items-center gap-2 group cursor-pointer"
           onClick={() => handleNav(null)}
         >
           <div className="relative flex items-center justify-center w-10 h-10 rounded-sm bg-primary/10 border border-primary/30 group-hover:border-primary/60 transition-colors">
@@ -78,11 +83,15 @@ export function Navbar() {
               {item.label}
             </button>
           ))}
-          <Button variant="outline" className="text-[10px] font-tech uppercase border-primary/30 hover:border-primary hover:bg-primary/10 text-primary px-6">
+          <Button
+            variant="outline"
+            className="text-[10px] font-tech uppercase border-primary/30 hover:border-primary hover:bg-primary/10 text-primary px-6"
+          >
             Вход в систему
           </Button>
         </div>
 
+        {/* Mobile burger */}
         <button className="md:hidden p-2 z-[80]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
@@ -91,15 +100,29 @@ export function Navbar() {
       {/* MOBILE MENU */}
       {isOpen && (
         <div className="fixed inset-0 z-[70] md:hidden">
-          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={() => setIsOpen(false)}
+          />
           <div className="absolute top-0 right-0 bottom-0 w-[300px] bg-black/95 p-6 flex flex-col">
             <div className="mb-10 flex flex-col gap-3">
-               <span className="font-display font-bold text-lg text-white">COOL<span className="text-primary">TRACK</span>VISION</span>
+              <span className="font-display font-bold text-lg text-white">
+                COOL<span className="text-primary">TRACK</span>VISION
+              </span>
             </div>
             <div className="flex flex-col gap-6">
-              <button onClick={() => handleNav("about")} className="text-left text-sm font-tech uppercase text-white border-b border-white/10 pb-2">О нас</button>
+              <button
+                onClick={() => handleNav("about")}
+                className="text-left text-sm font-tech uppercase text-white border-b border-white/10 pb-2"
+              >
+                О нас
+              </button>
               {navItems.map((item) => (
-                <button key={item.id} onClick={() => handleNav(item.id)} className="text-left text-sm font-tech uppercase text-white border-b border-white/10 pb-2">
+                <button
+                  key={item.id}
+                  onClick={() => handleNav(item.id)}
+                  className="text-left text-sm font-tech uppercase text-white border-b border-white/10 pb-2"
+                >
                   {item.label}
                 </button>
               ))}
