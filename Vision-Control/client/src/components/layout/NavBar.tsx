@@ -11,7 +11,7 @@ const navItems = [
   { id: "contact", label: "Контакты" },
 ];
 
-export function Navbar() {
+export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useLocation();
 
