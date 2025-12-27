@@ -13,7 +13,7 @@ import {
   FileText,
   Sparkles,
 } from "lucide-react";
-import { Navbar } from "@/components/layout/Navbar";
+import { Navbar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 
 const features = [
