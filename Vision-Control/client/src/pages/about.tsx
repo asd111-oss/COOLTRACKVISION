@@ -1,12 +1,12 @@
-import { Navbar } from "@/components/layout/NavBar";
-import { Footer } from "@/components/layout/Footer";
+import { NavBar } from "@/components/layout/NavBar";
+import { Footer } from "@/components/layout/Footer_";
 import { motion } from "framer-motion";
 import { Shield, Award, Star, Zap, TrendingDown, Lightbulb, Search } from "lucide-react";
 
 export default function About() {
   return (
     <div className="min-h-screen bg-transparent text-white">
-      <Navbar />
+      <NavBar />
       
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">

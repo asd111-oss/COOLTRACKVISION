@@ -1,5 +1,5 @@
 import { NavBar } from "@/components/layout/NavBar";
-import { Footer } from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer_";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 

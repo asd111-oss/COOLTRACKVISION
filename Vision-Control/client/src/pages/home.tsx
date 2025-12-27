@@ -1,4 +1,4 @@
-import { Footer } from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer_";
 import { NavBar } from "@/components/layout/NavBar";
 import { Hero } from "@/components/sections/hero";
 import { Features } from "@/components/sections/features";

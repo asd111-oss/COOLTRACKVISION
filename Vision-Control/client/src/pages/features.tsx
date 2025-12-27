@@ -14,7 +14,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { NavBar } from "@/components/layout/NavBar";
-import { Footer } from "@/components/layout/Footer";
+import { Footer } from "@/components/layout/Footer_";
 
 const features = [
   {
@@ -78,7 +78,7 @@ const features = [
 export default function FeaturesPage() {
   return (
     <div className="min-h-screen bg-transparent text-white">
-      <Navbar />
+      <NavBar />
 
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6">
