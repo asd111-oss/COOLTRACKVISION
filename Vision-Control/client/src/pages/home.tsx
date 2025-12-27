@@ -1,5 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/NavBar";
+import { NavBar } from "@/components/layout/NavBar";
 import { Hero } from "@/components/sections/hero";
 import { Features } from "@/components/sections/features";
 import { Benefits } from "@/components/sections/benefits";
@@ -11,7 +11,7 @@ import { FAQ } from "@/components/sections/faq"; // Правильный имп�
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
-      <Navbar />
+      <NavBar />
       
       <main>
         <Hero />

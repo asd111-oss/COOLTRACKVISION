@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/layout/NavBar";
+import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
@@ -6,7 +6,7 @@ import { Link } from "wouter";
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-[#020617] text-white">
-      <Navbar />
+      <NavBar />
 
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6 max-w-3xl">
