@@ -1,4 +1,4 @@
-import { NavBar } from "@/components/layout/NavBar_";
+import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
