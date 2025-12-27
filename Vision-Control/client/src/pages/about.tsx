@@ -1,5 +1,5 @@
-import { NavBar } from "@/components/layout/NavBar";
-import { Footer } from "@/components/layout/Footer_";
+import { NavBar } from "@/components/layout/NavBar_";
+import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { Shield, Award, Star, Zap, TrendingDown, Lightbulb, Search } from "lucide-react";
 
