@@ -6,7 +6,7 @@ import { Link } from "wouter";
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-[#020617] text-white">
-      <Navbar />
+      <NavBar />
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6 max-w-3xl">
           <Link href="/" className="group inline-flex items-center mb-16">

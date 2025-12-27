@@ -11,28 +11,24 @@ const navItems = [
   { id: "contact", label: "Контакты" },
 ];
 
-export function Navbar() {
+export function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location, setLocation] = useLocation();
 
-  // Универсальная функция навигации
   const handleNav = (id: string | null) => {
     setIsOpen(false);
 
-    // Отдельная страница "О нас"
     if (id === "about") {
       setLocation("/about");
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
-    // Отдельная страница "Функции"
     if (id === "features") {
       setLocation("/features");
       return;
     }
 
-    // Если мы НЕ на главной (/)
     if (location !== "/") {
       setLocation("/");
       setTimeout(() => {
@@ -40,7 +36,6 @@ export function Navbar() {
         element?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      // Если уже на главной — просто скроллим
       if (!id) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -52,7 +47,7 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-        {/* LOGO: всегда ведет на главную вверх */}
+        {/* LOGO */}
         <div
           className="flex items-center gap-2 group cursor-pointer"
           onClick={() => handleNav(null)}
