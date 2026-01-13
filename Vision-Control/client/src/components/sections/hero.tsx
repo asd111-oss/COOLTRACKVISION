@@ -13,13 +13,11 @@ const DetectionTarget = ({ id, x, y }: { id: number; x: number; y: number }) => 
       className="absolute w-24 h-24 pointer-events-none z-10 border border-primary/30"
       style={{ left: `${x}%`, top: `${y}%` }}
     >
-      {/* Уголки рамки */}
       <div className="absolute top-0 left-0 w-2 h-2 border-l-2 border-t-2 border-primary" />
       <div className="absolute top-0 right-0 w-2 h-2 border-r-2 border-t-2 border-primary" />
       <div className="absolute bottom-0 left-0 w-2 h-2 border-l-2 border-b-2 border-primary" />
       <div className="absolute bottom-0 right-0 w-2 h-2 border-r-2 border-b-2 border-primary" />
       
-      {/* Лейбл с данными */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -35,7 +33,6 @@ const DetectionTarget = ({ id, x, y }: { id: number; x: number; y: number }) => 
 export function Hero() {
   const [targets, setTargets] = useState<{id: number, x: number, y: number}[]>([]);
 
-  // Логика спавна "Таргеты" (эффект сканирования)
   useEffect(() => {
     const interval = setInterval(() => {
       const newId = Date.now();
@@ -58,7 +55,6 @@ export function Hero() {
   return (
     <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       
-      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
@@ -66,11 +62,9 @@ export function Hero() {
           className="w-full h-full object-cover opacity-50 [mask-image:linear-gradient(to_bottom,black_40%,transparent_100%)]"
         />
         
-        {/* Градиенты */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_100%)]" />
         
-        {/* Сетка */}
         <div className="absolute inset-0 opacity-20 pointer-events-none" 
              style={{ 
                backgroundImage: 'linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)', 
@@ -81,7 +75,6 @@ export function Hero() {
         />
       </div>
 
-      {/* === ACTIVE AI LAYER (Рамки) === */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <AnimatePresence>
           {targets.map(target => (
@@ -90,7 +83,6 @@ export function Hero() {
         </AnimatePresence>
       </div>
 
-      {/* Main Content (Оригинальный текст) */}
       <div className="container relative z-10 px-6 mx-auto text-center md:text-left">
         <div className="max-w-4xl">
           <motion.h1
@@ -108,7 +100,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 font-light leading-relaxed"
           >
-            <span className="text-foreground font-semibold">Al-платформа видеоаналитики</span>, которая дает решения, а не "кино"      
+            <span className="text-foreground font-semibold">Инновационная AI-платформа видеоаналитики</span>     
           </motion.p>
 
           <motion.div
@@ -116,14 +108,21 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-tech uppercase tracking-wider text-lg h-14 px-8 rounded-none">
-              Демо  
-            </Button>
+            {/* ИЗМЕНЕНИЕ ТУТ: Обернули кнопку в ссылку */}
+            <a 
+              href="https://app.cooltrackvision.ru/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-tech uppercase tracking-wider text-lg h-14 px-8 rounded-none">
+                Демо  
+              </Button>
+            </a>
           </motion.div>
         </div>
       </div>
 
-      {/* Decorative tech elements (Right Bottom) - Оригинальный блок */}
       <div className="absolute bottom-10 right-10 hidden md:block z-10">
         <div className="flex flex-col items-end gap-2 text-primary/50 font-mono text-xs">
           <div>СИСТ.СТАТУС: ОНЛАЙН</div>

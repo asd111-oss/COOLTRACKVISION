@@ -14,12 +14,19 @@ export function Contact() {
           Убедитесь в эффективности системы на реальных данных вашего объекта
         </p>
 
-        {/* Кнопка: убрали лишние отступы, сделали её более строгой */}
-        <Button 
-          className="bg-[#ff6600] hover:bg-[#e65c00] text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider font-semibold"
+        {/* Кнопка теперь является ссылкой на платформу */}
+        <a 
+          href="https://app.cooltrackvision.ru/" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-block"
         >
-          Хочу посмотреть на своих камерах
-        </Button>
+          <Button 
+            className="bg-[#ff6600] hover:bg-[#e65c00] text-white rounded-none px-8 py-6 text-sm uppercase tracking-wider font-semibold"
+          >
+            Хочу посмотреть на своих камерах
+          </Button>
+        </a>
       </div>
     </section>
   );
