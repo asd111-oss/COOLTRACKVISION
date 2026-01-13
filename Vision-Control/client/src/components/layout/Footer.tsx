@@ -1,29 +1,15 @@
 import { Mail, MapPin, Phone } from "lucide-react";
-import { useLocation } from "wouter";
+import { useLocation, Link } from "wouter";
 
 export function Footer() {
   const [location, setLocation] = useLocation();
 
   const scrollToSection = (id: string) => {
-    // МАРШРУТИЗАЦИЯ НА СТРАНИЦЫ
-    if (id === "about") {
-      setLocation("/about");
-      return;
-    }
-    if (id === "features") {
-      setLocation("/features");
-      return;
-    }
-    if (id === "benefits") {
-      setLocation("/core-benefits"); // ИЗМЕНЕНО: путь для страницы преимуществ
-      return;
-    }
-    if (id === "industries" || id === "solutions") {
-      setLocation("/industry-solutions"); // ИЗМЕНЕНО: путь для базы сценариев
-      return;
-    }
+    if (id === "about") { setLocation("/about"); return; }
+    if (id === "features") { setLocation("/features"); return; }
+    if (id === "benefits") { setLocation("/core-benefits"); return; }
+    if (id === "industries" || id === "solutions") { setLocation("/industry-solutions"); return; }
 
-    // Скролл на главной
     if (location !== "/") {
       setLocation("/");
       setTimeout(() => {
@@ -46,12 +32,12 @@ export function Footer() {
         </div>
 
         <nav className="flex flex-wrap justify-center gap-x-5 gap-y-3 mb-16 text-sm text-slate-400">
-          <button onClick={() => scrollToSection("about")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">О нас</button>
-          <button onClick={() => scrollToSection("features")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">Функции</button>
-          <button onClick={() => scrollToSection("benefits")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">Преимущества</button>
-          <button onClick={() => scrollToSection("industries")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">Отрасли</button>
-          <button onClick={() => scrollToSection("how-it-works")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">Как это работает</button>
-          <button onClick={() => scrollToSection("contact")} className="hover:text-primary transition-colors bg-transparent cursor-pointer">Контакты</button>
+          <button onClick={() => scrollToSection("about")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">О нас</button>
+          <button onClick={() => scrollToSection("features")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">Функции</button>
+          <button onClick={() => scrollToSection("benefits")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">Преимущества</button>
+          <button onClick={() => scrollToSection("industries")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">Отрасли</button>
+          <button onClick={() => scrollToSection("how-it-works")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">Как это работает</button>
+          <button onClick={() => scrollToSection("contact")} className="hover:text-primary transition-colors bg-transparent cursor-pointer outline-none">Контакты</button>
         </nav>
 
         <div className="flex flex-col items-center gap-8 mb-16 text-slate-300">
@@ -65,8 +51,18 @@ export function Footer() {
           </div>
         </div>
 
+        {/* НИЖНЯЯ ПАНЕЛЬ С ПОЛИТИКАМИ */}
         <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] text-slate-500 uppercase tracking-[0.3em] font-tech">
           <div>© 2025 CoolTrackVision. Все права защищены.</div>
+          
+          <div className="flex gap-8">
+            <Link href="/privacy">
+              <span className="hover:text-primary transition-colors cursor-pointer">Политика конфиденциальности</span>
+            </Link>
+            <Link href="/terms">
+              <span className="hover:text-primary transition-colors cursor-pointer">Пользовательское соглашение</span>
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
