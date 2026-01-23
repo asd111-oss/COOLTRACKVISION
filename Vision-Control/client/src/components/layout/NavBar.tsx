@@ -7,7 +7,7 @@ const navItems = [
   { id: "features", label: "Функции" },
   { id: "benefits", label: "Преимущества" },
   { id: "solutions", label: "Отрасли" },
-  { id: "cases", label: "Кейсы" },
+  { id: "cases", label: "Кейсы" }, // ID должен совпадать с условием в handleNav
   { id: "contact", label: "Контакты" },
 ];
 
@@ -18,7 +18,7 @@ export function NavBar() {
   const handleNav = (id: string | null) => {
     setIsOpen(false);
 
-    // ПРАВИЛЬНЫЕ ПЕРЕХОДЫ НА СТРАНИЦЫ
+    // --- ПРАВИЛЬНЫЕ ПЕРЕХОДЫ НА ОТДЕЛЬНЫЕ СТРАНИЦЫ ---
     if (id === "about") {
       setLocation("/about");
       return;
@@ -39,7 +39,13 @@ export function NavBar() {
       return;
     }
 
-    // Логика для якорей на главной
+    // НОВОЕ: Переход на страницу Кейсов
+    if (id === "cases") {
+      setLocation("/cases"); 
+      return;
+    }
+
+    // --- ЛОГИКА ДЛЯ ЯКОРЕЙ (ПЛАВНЫЙ СКРОЛЛ) ---
     if (location !== "/") {
       setLocation("/");
       setTimeout(() => {
@@ -64,17 +70,25 @@ export function NavBar() {
           </span>
         </div>
 
+        {/* Десктопное меню */}
         <div className="hidden md:flex items-center gap-6">
-          <button onClick={() => handleNav("about")} className="text-[10px] font-tech uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors bg-transparent border-none cursor-pointer">
+          <button 
+            onClick={() => handleNav("about")} 
+            className="text-[10px] font-tech uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
+          >
             О нас
           </button>
+          
           {navItems.map((item) => (
-            <button key={item.id} onClick={() => handleNav(item.id)} className="text-[10px] font-tech uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors bg-transparent border-none cursor-pointer">
+            <button 
+              key={item.id} 
+              onClick={() => handleNav(item.id)} 
+              className="text-[10px] font-tech uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
+            >
               {item.label}
             </button>
           ))}
           
-          {/* ССЫЛКА НА ЛИЧНЫЙ КАБИНЕТ */}
           <a 
             href="https://app.cooltrackvision.ru/" 
             target="_blank" 
@@ -86,10 +100,23 @@ export function NavBar() {
           </a>
         </div>
 
+        {/* Мобильная кнопка */}
         <button className="md:hidden p-2 z-[80]" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
       </div>
+
+      {/* Мобильное меню (опционально, если нужно) */}
+      {isOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-background border-b border-border p-6 flex flex-col gap-4">
+            <button onClick={() => handleNav("about")} className="text-left text-xs font-tech uppercase tracking-widest">О нас</button>
+            {navItems.map((item) => (
+                <button key={item.id} onClick={() => handleNav(item.id)} className="text-left text-xs font-tech uppercase tracking-widest">
+                    {item.label}
+                </button>
+            ))}
+        </div>
+      )}
     </nav>
   );
 }
