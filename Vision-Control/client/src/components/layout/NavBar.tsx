@@ -7,7 +7,7 @@ const navItems = [
   { id: "features", label: "Функции" },
   { id: "benefits", label: "Преимущества" },
   { id: "solutions", label: "Отрасли" },
-  { id: "how-it-works", label: "Как это работает" },
+  { id: "cases", label: "Кейсы" },
   { id: "contact", label: "Контакты" },
 ];
 
