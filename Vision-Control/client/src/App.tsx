@@ -1,3 +1,4 @@
+// App.tsx - ВЕРСИЯ С lazy (как у всех остальных страниц)
 import { useEffect, useState, Suspense, lazy } from "react";
 import { Switch, Route, Router } from "wouter";
 import { useHashLocation } from "wouter/use-hash-location";
@@ -7,13 +8,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { motion, AnimatePresence } from "framer-motion";
 
+// ✅ ВЕРНУЛИ lazy для CasesPage как у всех остальных
 const Home = lazy(() => import("@/pages/home"));
 const About = lazy(() => import("@/pages/about"));
 const FeaturesPage = lazy(() => import("@/pages/features"));
 const CoreBenefits = lazy(() => import("@/pages/CoreBenefits"));
 const IndustrySolutions = lazy(() => import("@/pages/IndustrySolutions"));
-const TermsPage = lazy(() => import("@/pages/terms")); // Добавлено
-const PrivacyPage = lazy(() => import("@/pages/privacy")); // Добавлено
+const TermsPage = lazy(() => import("@/pages/terms"));
+const PrivacyPage = lazy(() => import("@/pages/privacy"));
+const HowItWorks = lazy(() => import("@/pages/how-it-works"));
+const CasesPage = lazy(() => import("@/pages/cases")); // ✅ lazy как было
 
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { CustomCursor } from "./components/ui/custom-cursor";
@@ -30,10 +34,10 @@ function Preloader({ onComplete }: { onComplete: () => void }) {
       transition={{ duration: 0.8 }}
       className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-[#020617] overflow-hidden"
     >
+      {/* ... прелоадер без изменений ... */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="w-full h-[2px] bg-primary/40 shadow-[0_0_20px_#f97316] animate-[scan_2s_ease-in-out_infinite]" />
       </div>
-
       <div className="relative z-10 text-center">
         <div className="mb-4 flex items-center justify-center gap-3">
           <div className="w-2 h-2 bg-primary animate-pulse" />
@@ -41,11 +45,9 @@ function Preloader({ onComplete }: { onComplete: () => void }) {
             Подготовка <span className="text-primary text-glow">интерфейса</span>
           </h1>
         </div>
-        
         <div className="font-tech text-[10px] text-primary/60 uppercase tracking-[0.4em] mb-8">
           Пожалуйста, подождите...
         </div>
-
         <div className="w-64 h-[2px] bg-white/5 relative mx-auto">
           <motion.div 
             initial={{ width: 0 }}
@@ -55,7 +57,6 @@ function Preloader({ onComplete }: { onComplete: () => void }) {
           />
         </div>
       </div>
-
       <div className="absolute top-10 left-10 w-20 h-20 border-t-2 border-l-2 border-primary/20" />
       <div className="absolute top-10 right-10 w-20 h-20 border-t-2 border-r-2 border-primary/20" />
       <div className="absolute bottom-10 left-10 w-20 h-20 border-b-2 border-l-2 border-primary/20" />
@@ -81,7 +82,7 @@ function AppRouter() {
         animate={{ opacity: loading ? 0 : 1 }}
         transition={{ duration: 1 }}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="flex items-center justify-center h-screen text-white">Загрузка...</div>}>
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/about" component={About} />
@@ -90,6 +91,8 @@ function AppRouter() {
             <Route path="/industry-solutions" component={IndustrySolutions} />
             <Route path="/terms" component={TermsPage} />
             <Route path="/privacy" component={PrivacyPage} />
+            <Route path="/how-it-works" component={HowItWorks} />
+            <Route path="/cases" component={CasesPage} /> {/* ✅ точно как все остальные */}
           </Switch>
         </Suspense>
       </motion.main>

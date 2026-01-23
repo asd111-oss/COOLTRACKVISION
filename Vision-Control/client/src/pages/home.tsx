@@ -6,7 +6,8 @@ import { Benefits } from "@/components/sections/benefits";
 import { Industries } from "@/components/sections/industries";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { Contact } from "@/components/sections/contact";
-import { FAQ } from "@/components/sections/faq"; // Правильный импорт FAQ
+import { FAQ } from "@/components/sections/faq";
+import CasesInBrief from "@/components/sections/cases-in-brief"; // ✅ НОВЫЙ БЛОК
 
 export default function Home() {
   return (
@@ -19,8 +20,9 @@ export default function Home() {
         <Benefits />
         <Industries />
         <HowItWorks />
+        <CasesInBrief /> {/* ✅ НОВОЕ НАЗВАНИЕ */}
         <Contact />
-        <FAQ /> {/* Добавили FAQ один раз в самом конце списка */}
+        <FAQ />
       </main>
 
       <Footer />
