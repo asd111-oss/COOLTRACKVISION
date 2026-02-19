@@ -16,14 +16,14 @@ jobs:
           node-version: 20
       - name: Install
         run: npm install
-        working-directory: Vision-Control
+        working-directory: COOLTRACKVISION-main/Vision-Control
       - name: Build
         run: npm run build
-        working-directory: Vision-Control
+        working-directory: COOLTRACKVISION-main/Vision-Control
       - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: Vision-Control/dist
+          path: COOLTRACKVISION-main/Vision-Control/dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
