@@ -1,6 +1,39 @@
-- name: Build Project
+name: Build and Deploy
+on:
+  push:
+    branches: ["main"]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
         run: |
           cd COOLTRACKVISION-main/Vision-Control/client
-          # Мы копируем index.html из папки выше прямо перед билдом
-          cp ../../index.html ./index.html
-          npx vite build --root . --outDir dist
+          npm install --legacy-peer-deps
+
+      - name: Build Project
+        run: |
+          cd COOLTRACKVISION-main/Vision-Control/client
+          # Мы копируем индекс, если он все еще в папке выше
+          if [ -f "../../index.html" ]; then cp "../../index.html" ./index.html; fi
+          npx vite build --root . --outDir dist --base /COOLTRACKVISION/
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'COOLTRACKVISION-main/Vision-Control/client/dist'
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4
