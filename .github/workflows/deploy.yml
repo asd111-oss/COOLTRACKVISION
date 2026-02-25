@@ -19,10 +19,9 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        # Мы заходим в папку, где лежит package.json и устанавливаем всё
         run: |
           cd COOLTRACKVISION-main/Vision-Control/client
-          npm install
+          npm ci --prefer-offline --no-audit
 
       - name: Build Project
         # Запускаем сборку прямо на сервере GitHub
