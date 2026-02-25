@@ -32,11 +32,10 @@ jobs:
           # Запускаем именно твой скрипт сборки
           npm run build
 
-      - name: Upload Artifact
+     - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # ВНИМАНИЕ: проверь, появляется ли папка 'dist' после билда. 
-          # Обычно в таких проектах она в корне папки client.
+          # Мы указываем точный путь, где твой скрипт build.ts создал файлы
           path: 'COOLTRACKVISION-main/Vision-Control/client/dist'
 
       - name: Deploy
