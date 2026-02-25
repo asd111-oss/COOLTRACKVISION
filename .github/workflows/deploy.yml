@@ -17,22 +17,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
+          # Указываем, где искать package.json для кэша
+          cache-dependency-path: COOLTRACKVISION-main/Vision-Control/client/package-lock.json
 
       - name: Install Dependencies
         run: |
           cd COOLTRACKVISION-main/Vision-Control/client
-          npm ci --prefer-offline --no-audit
+          npm install --legacy-peer-deps
 
       - name: Build Project
-        # Запускаем сборку прямо на сервере GitHub
         run: |
           cd COOLTRACKVISION-main/Vision-Control/client
+          # Запускаем именно твой скрипт сборки
           npm run build
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Указываем на папку, которая появится после сборки
+          # ВНИМАНИЕ: проверь, появляется ли папка 'dist' после билда. 
+          # Обычно в таких проектах она в корне папки client.
           path: 'COOLTRACKVISION-main/Vision-Control/client/dist'
 
       - name: Deploy
