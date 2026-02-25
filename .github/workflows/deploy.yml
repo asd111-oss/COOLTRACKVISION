@@ -1,4 +1,4 @@
-name: Deploy site
+name: Build and Deploy
 on:
   push:
     branches: ["main"]
@@ -7,15 +7,34 @@ permissions:
   pages: write
   id-token: write
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Upload artifact
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        # Мы заходим в папку, где лежит package.json и устанавливаем всё
+        run: |
+          cd COOLTRACKVISION-main/Vision-Control/client
+          npm install
+
+      - name: Build Project
+        # Запускаем сборку прямо на сервере GitHub
+        run: |
+          cd COOLTRACKVISION-main/Vision-Control/client
+          npm run build
+
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Мы говорим: "Бери всё, что видишь в корне"
-      - name: Deploy to GitHub Pages
-        id: deployment
+          # Указываем на папку, которая появится после сборки
+          path: 'COOLTRACKVISION-main/Vision-Control/client/dist'
+
+      - name: Deploy
         uses: actions/deploy-pages@v4
