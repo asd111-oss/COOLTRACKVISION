@@ -26,9 +26,10 @@ jobs:
       - name: Build Project
         run: |
           cd COOLTRACKVISION-main/Vision-Control/client
-          # Мы копируем индекс, если он все еще в папке выше
+          # Если index.html все еще в COOLTRACKVISION-main, копируем его сюда
           if [ -f "../../index.html" ]; then cp "../../index.html" ./index.html; fi
-          npx vite build --root . --outDir dist --base /COOLTRACKVISION/
+          # Запускаем сборку без лишних флагов, которые пугают твой Vite
+          npx vite build --base /COOLTRACKVISION/
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
